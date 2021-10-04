@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Forms</title>
+</head>
+
+<body>
+    <div class="Array">
+        <h1 id="Arr"></h1>
+        <h1 id="Arr2"></h1>
+    </div>
+
+    <form onsubmit="VerifyForm()">
+        <fieldset>
+            <legend>Personal</legend>
+            <div class="container">
+                <div class="inputDiv">
+                    <label for="password">Password:</label>
+                    <input type="password" name="Password" id="password"/>
+                </div>
+
+                <div class="inputDiv">
+                    <label for="lName">Username:</label>
+                    <input type="text" name="Username" id="username"/>
+                </div>
+
+                <div class="inputDiv">
+                    <label for="password">Confirm Password:</label>
+                    <input type="password" name="PasswordConfirm" id="passwordConfirm"/>
+                </div>
+
+                <div class="inputDiv">
+                    <label for="email">E-mail:</label>
+                    <input type="text" name="E-Mail" id="email"/>
+                </div>
+            </div>
+            <div class="containerCheckBox">
+                <input type="checkbox" class="checkbox" name="termsOfService" id="check">
+                <label for="termsOfService">I agree to the Terms of Service.</label>
+            </div>
+        </fieldset>
+        <input type="submit" name="Submit" value="Submit" class="submit" />
+    </form>
+
+    <form onsubmit="NewPage()">
+        <fieldset>
+            <legend>Personal</legend>
+            <div class="container">
+                <div class="inputDiv">
+                    <label for="password">Password:</label>
+                    <input type="password" name="Password" id="password" required="required" pattern=".{6,}" title="Six or more characters"/>
+                </div>
+
+                <div class="inputDiv">
+                    <label for="lName">Username:</label>
+                    <input type="text" name="Username" id="username" required="required" pattern=".{6,}" title="Six or more characters"/>
+                </div>
+
+                <div class="inputDiv">
+                    <label for="email">E-mail:</label>
+                    <input type="email" name="E-Mail" id="email" required="required"/>
+                </div>
+            </div>
+            <div class="containerCheckBox">
+                <input type="checkbox" class="checkbox" name="termsOfService" id="check" required="required">
+                <label for="termsOfService">I agree to the Terms of Service.</label>
+            </div>
+        </fieldset>
+        <input type="submit" name="Submit" value="Submit" class="submit" />
+    </form>
+
+    <script src="formvalidering.js"></script>
+</body>
+
+</html>
