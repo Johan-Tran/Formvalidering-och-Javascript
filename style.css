@@ -34,7 +34,6 @@ label {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: space-around;
   margin-top: 2%;
 }
 
