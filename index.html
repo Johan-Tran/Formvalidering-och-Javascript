@@ -21,27 +21,27 @@
             <div class="container">
                 <div class="inputDiv">
                     <label for="password">Password:</label>
-                    <input type="password" name="Password" id="password"/>
+                    <input type="password" name="Password" id="password" />
                 </div>
 
                 <div class="inputDiv">
                     <label for="lName">Username:</label>
-                    <input type="text" name="Username" id="username"/>
+                    <input type="text" name="Username" id="lName" />
                 </div>
 
                 <div class="inputDiv">
-                    <label for="password">Confirm Password:</label>
-                    <input type="password" name="PasswordConfirm" id="passwordConfirm"/>
+                    <label for="PasswordConfirm">Confirm Password:</label>
+                    <input type="password" name="PasswordConfirm" id="PasswordConfirm" />
                 </div>
 
                 <div class="inputDiv">
                     <label for="email">E-mail:</label>
-                    <input type="text" name="E-Mail" id="email"/>
+                    <input type="text" name="E-Mail" id="email" />
                 </div>
             </div>
             <div class="containerCheckBox">
-                <input type="checkbox" class="checkbox" name="termsOfService" id="check">
                 <label for="termsOfService">I agree to the Terms of Service.</label>
+                <input type="checkbox" class="checkbox" name="termsOfService" id="termsOfService">
             </div>
         </fieldset>
         <input type="submit" name="Submit" value="Submit" class="submit" />
@@ -53,22 +53,24 @@
             <div class="container">
                 <div class="inputDiv">
                     <label for="password">Password:</label>
-                    <input type="password" name="Password" id="password" required="required" pattern=".{6,}" title="Six or more characters"/>
+                    <input type="password" name="Password" id="password2" required="required" pattern=".{6,}"
+                        title="Six or more characters" />
                 </div>
 
                 <div class="inputDiv">
-                    <label for="lName">Username:</label>
-                    <input type="text" name="Username" id="username" required="required" pattern=".{6,}" title="Six or more characters"/>
+                    <label for="lName2">Username:</label>
+                    <input type="text" name="Username" id="lName2" required="required" pattern=".{6,}"
+                        title="Six or more characters" />
                 </div>
 
                 <div class="inputDiv">
                     <label for="email">E-mail:</label>
-                    <input type="email" name="E-Mail" id="email" required="required"/>
+                    <input type="email" name="E-Mail" id="email2" required="required" />
                 </div>
             </div>
             <div class="containerCheckBox">
-                <input type="checkbox" class="checkbox" name="termsOfService" id="check" required="required">
-                <label for="termsOfService">I agree to the Terms of Service.</label>
+                <label for="termsOfService2">I agree to the Terms of Service.</label>
+                <input type="checkbox" class="checkbox" name="termsOfService" id="termsOfService2" required="required">
             </div>
         </fieldset>
         <input type="submit" name="Submit" value="Submit" class="submit" />

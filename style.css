@@ -11,36 +11,36 @@ label {
   display: block;
 }
 
-.title{
+.title {
   text-align: center;
-  padding-top:23%;
+  padding-top: 23%;
 }
 
-.Array{
-  height:auto;
-  width:min-content;
-  display:block;
-  margin:auto;
-  border:1px solid black;
+.Array {
+  height: auto;
+  width: min-content;
+  display: block;
+  margin: auto;
+  border: 1px solid black;
   border-radius: 10px;
-  background-color:white;
-  box-shadow: 5px 5px rgb(196, 0, 0); 
+  background-color: white;
+  box-shadow: 5px 5px rgb(196, 0, 0);
 }
 
-.container{
-  width:100%;
-  height:50%;
-  display:flex;
+.container {
+  width: 100%;
+  height: 50%;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: space-around;
-  margin-top:2%;
+  margin-top: 2%;
 }
 
 .inputDiv {
-  width:40%;
-  height:60%;
+  width: 40%;
+  height: 60%;
 }
 
 input {
@@ -48,11 +48,11 @@ input {
   height: auto;
 }
 
-.containerCheckBox{
-  display:block;
-  height:auto;
-  width:20vw;
-  margin:3% 0 0 39%;
+.containerCheckBox {
+  display: block;
+  height: auto;
+  width: 20vw;
+  margin: 3% 0 0 39%;
   text-align: center;
 }
 

@@ -2,17 +2,25 @@ const max = 10;
 var rndNums = [],
   range = 100;
 
+function Arrlength(max, rndNums) {
+  for (let i = 0; i < max; i++) {
+    rndNums.push(i);
+  }
+  return rndNums;
+}
+
 function RandomizeNums(rndnums, range) {
-  while (rndNums.length < max) {
+  for (let i = 0; i < rndnums.length; i++) {
     let rnd = Math.floor(Math.random() * range) + 1;
     if (!rndNums.includes(rnd)) {
-      rndNums.push(rnd);
+      rndnums[i] = rnd;
     }
   }
   return rndNums;
 }
 
-document.getElementById("Arr").innerHTML = RandomizeNums(rndNums, range);
+
+document.getElementById("Arr").innerHTML = RandomizeNums(Arrlength(max, rndNums), range);
 document.getElementById("Arr2").innerHTML = rndNums.sort(function (a, b) {
   return a - b;
 });
@@ -28,7 +36,7 @@ function VerifyForm() {
   VerifyAll(emailStatus, passwordStatus, userStatus, checkBoxStatus);
 }
 
-function NewPage(){
+function NewPage() {
   window.open("confirmed.html", "_blank");
 }
 
