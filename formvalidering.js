@@ -1,13 +1,14 @@
 const max = 10;
-//Använder objektet array för att spara flera värden. 
+//Använder objektet fält för att spara flera värden. 
 var rndNums = [],
   range = 100;
 
-//Lägger till ett antal element i fältet.
+//En funktion som Lägger till ett antal element i fältet.
 function Arrlength(max, rndNums) {
-  //Har använt for-loop för att man kan specifiera antalet element man vill ha i fältet.
+  //Har använt for-loop för att man kan specificiera antalet element man vill ha i fältet.
   for (let i = 0; i < max; i++) {
-    rndNums.push(i);
+    //Ett värde kommer att tilläggas i fältet.
+    rndNums.push(0);
   }
   return rndNums;
 }
@@ -16,31 +17,37 @@ function Arrlength(max, rndNums) {
 function RandomizeNums(rndnums, range) {
   //Behöver använda for-loop för att ta reda på indexen och ersätta elementet.
   for (let i = 0; i < rndnums.length; i++) {
-    //Använder objekten Math för att avrunda neråt till det närmaste talet och slumpmässigt få fram ett tal 
+    //Använder objektet Math för att avrunda neråt till det närmaste talet och slumpmässigt få fram ett tal.
     //(Math.floor avrundar och Math.random ger ett slumpmässigt tal).
-    let rnd = Math.floor(Math.random() * range) + 1;
-    if (!rndNums.includes(rnd)) {
-      rndnums[i] = rnd;
+    //Använder while-loop för att iterera igen om ett tal redan finns i fältet.
+    while (true){
+      let rnd = Math.floor(Math.random() * range) + 1;
+      //Kollar om det slumpmässiga talet finns i fältet. Om den inte finns ersätts det slumpmässiga talet med fältets element.
+      if (!rndNums.includes(rnd)) {
+        rndnums[i] = rnd;
+        break;
+      }
     }
   }
   return rndNums;
-}
+} 
 
 //Använder objektet document för att få värden på rubrikerna och det man har skrivit in i formen.
 document.getElementById("Arr").innerHTML = RandomizeNums(Arrlength(max, rndNums), range);
-//Sort metoden jämför två parametrar returnerar antingen något som är mindre än 0, 0 eller större än 0. 
+document.getElementById("Arr2").innerHTML = rndNums.sort(function (a, b) {
+  return a - b;
+});
 /*
+Sort-metoden har en funktion som jämför två parametrar och returnerar antingen ett värde som är mindre än 0, 0 eller större än 0. 
 Om a < b returneras ett tal mindre 0, som då sorterar a före b.
 Om a > b returneras ett tal mindre 0, som då sorterar b före a.
 Om a == b returneras 0, vilket betyder att parameterna index inte ändras.
 */ 
-document.getElementById("Arr2").innerHTML = rndNums.sort(function (a, b) {
-  return a - b;
-});
 
-//Kollar om man har skrivit ner allting och checkat "Terms of Service".
+//Funktion som verifierar formen. 
 function VerifyForm() {
   let emailStatus, passwordStatus, userStatus;
+  //Lagrar om man har checkad av "Terms of Service" eller inte.
   let checkBoxStatus = document.getElementById("check").checked;
 
   emailStatus = VerifyEmail(emailStatus);
@@ -50,30 +57,32 @@ function VerifyForm() {
   VerifyAll(emailStatus, passwordStatus, userStatus, checkBoxStatus);
 }
 
-//Funktion för att öppna en ny sida.
+//Funktion för att öppna en ny sida. Den används för submit-knappen i den andra formen.
 function NewPage() {
   window.open("confirmed.html", "_blank");
 }
 
 //Funktion som kollar om man har skrivit en email.
 function VerifyEmail(emailStatus) {
-  //Ett fält som har flera email-tjänster.
+  //Ett fält som har flera email-domäner.
   const mail = ["@gmail.se", "@gmail.com", "@hotmail.se", "@hotmail.com", "@yahoo.se", "@yahoo.com", "@outlook.se", "@outlook.com"];
   let email = document.getElementById("email").value;
 
-  //Använder mig av en for-loop för att kolla om någon av email-tjänsterna stämmer med det man har skrivit i email.
+  //Använder mig av en for-loop för att kolla om någon av elementen i mail-fältet stämmer med det man har skrivit i email.
   for (let i = 0; i < mail.length; i++) {
-    
+    //Med slice tar jag bort en del av det man har skrivit i email med någon av värdena i fältet och lagrar det i en temporär variabel.
+    //Om man har skrivit rätt kommer emailtmp spara exempelvis bertil@gmail.com som bertil. 
     let emailtmp = email.slice(0, -mail[i].length);
+    //Jämför emailtmp med det man har skrivit i formen. Om bertil@gmail.com är en email ska if-satsen kolla om @gmail.com är efter bertil
     if (email.includes(mail[i], (emailtmp.length))) {
       emailStatus = true;
-      break;
+      break; //Har break här för att for-loopen inte ska iterera flera gånger än vad som behövs.
     }
   }
   return emailStatus;
 }
 
-//Funktionen kollar om lösenorden stämmer.
+//Funktionen kollar om lösenorden stämmer och är längre än 6 karaktärer.
 function VerifyPassword(password, passwordConfirm) {
   password = document.getElementById("password").value;
   passwordConfirm = document.getElementById("passwordConfirm").value;
@@ -86,6 +95,7 @@ function VerifyUser() {
   return username.length >= 6;
 }
 
+//En funktion som kollar om personuppgifterna stämmer.
 function VerifyAll(emailStatus, passwordStatus, userStatus, checkBoxStatus) {
   if (emailStatus && passwordStatus && userStatus && checkBoxStatus) {
     window.open("confirmed.html", "_blank");
