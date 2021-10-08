@@ -22,7 +22,7 @@ function RandomizeNums(rndnums, range) {
     //Använder while-loop för att iterera igen om ett tal redan finns i fältet.
     while (true){
       let rnd = Math.floor(Math.random() * range) + 1;
-      //Kollar om det slumpmässiga talet finns i fältet. Om den inte finns ersätts det slumpmässiga talet med fältets element.
+      //Kollar om det slumpmässiga talet finns i fältet. Om den inte finns läggs den i fältet.
       if (!rndNums.includes(rnd)) {
         rndnums[i] = rnd;
         break;
