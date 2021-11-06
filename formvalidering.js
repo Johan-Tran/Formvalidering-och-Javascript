@@ -1,39 +1,15 @@
-const max = 10;
 //Använder objektet fält för att spara flera värden. 
-var rndNums = [],
-  range = 100;
+var rndNums = [];
 
-//En funktion som Lägger till ett antal element i fältet.
-function Arrlength(max, rndNums) {
-  //Har använt for-loop för att man kan specificiera antalet element man vill ha i fältet.
-  for (let i = 0; i < max; i++) {
-    //Ett värde kommer att tilläggas i fältet.
-    rndNums.push(0);
+while (rndNums.length < 10) {
+  let rnd = Math.floor(Math.random() * 100) + 1;
+  if (!rndNums.includes(rnd)) {
+      rndNums.push(rnd);
   }
-  return rndNums;
 }
 
-//Ersätter element vid ett specifikt index med ett slumpmässigt tal. 
-function RandomizeNums(rndnums, range) {
-  //Behöver använda for-loop för att ta reda på indexen och ersätta elementet.
-  for (let i = 0; i < rndnums.length; i++) {
-    //Använder objektet Math för att avrunda neråt till det närmaste talet och slumpmässigt få fram ett tal.
-    //(Math.floor avrundar och Math.random ger ett slumpmässigt tal).
-    //Använder while-loop för att iterera igen om ett tal redan finns i fältet.
-    while (true){
-      let rnd = Math.floor(Math.random() * range) + 1;
-      //Kollar om det slumpmässiga talet finns i fältet. Om den inte finns läggs den i fältet.
-      if (!rndNums.includes(rnd)) {
-        rndnums[i] = rnd;
-        break;
-      }
-    }
-  }
-  return rndNums;
-} 
-
 //Använder objektet document för att få värden på rubrikerna och det man har skrivit in i formen.
-document.getElementById("Arr").innerHTML = RandomizeNums(Arrlength(max, rndNums), range);
+document.getElementById("Arr").innerHTML = rndNums;
 document.getElementById("Arr2").innerHTML = rndNums.sort(function (a, b) {
   return a - b;
 });
@@ -42,70 +18,29 @@ Sort-metoden har en funktion som jämför två parametrar och returnerar antinge
 Om a < b returneras ett tal mindre 0, som då sorterar a före b.
 Om a > b returneras ett tal mindre 0, som då sorterar b före a.
 Om a == b returneras 0, vilket betyder att parameterna index inte ändras.
-*/ 
+*/
 
 //Funktion som verifierar formen. 
 function VerifyForm() {
-  let emailStatus, passwordStatus, userStatus;
-  //Lagrar om man har checkad av "Terms of Service" eller inte.
-  let checkBoxStatus = document.getElementById("check").checked;
+  var password = document.getElementById("password").value;
+  var passwordConfirm = document.getElementById("passwordConfirm").value;
+  var user = document.getElementById("username").value;
+  var checkBox = document.getElementById("check").checked;
+  var email = document.getElementById("email").value; 
 
-  emailStatus = VerifyEmail(emailStatus);
-  passwordStatus = VerifyPassword(password, passwordConfirm);
-  userStatus = VerifyUser();
-
-  VerifyAll(emailStatus, passwordStatus, userStatus, checkBoxStatus);
-}
-
-//Funktion för att öppna en ny sida. Den används för submit-knappen i den andra formen.
-function NewPage() {
-  window.open("confirmed.html", "_blank");
-}
-
-//Funktion som kollar om man har skrivit en email.
-function VerifyEmail(emailStatus) {
-  //Ett fält som har flera email-domäner.
-  const mail = ["@gmail.se", "@gmail.com", "@hotmail.se", "@hotmail.com", "@yahoo.se", "@yahoo.com", "@outlook.se", "@outlook.com"];
-  let email = document.getElementById("email").value;
-
-  //Använder mig av en for-loop för att kolla om någon av elementen i mail-fältet stämmer med det man har skrivit i email.
-  for (let i = 0; i < mail.length; i++) {
-    //Med slice tar jag bort en del av det man har skrivit i email med någon av värdena i fältet och lagrar det i en temporär variabel.
-    //Om man har skrivit rätt kommer emailtmp spara exempelvis bertil@gmail.com som bertil. 
-    let emailtmp = email.slice(0, -mail[i].length);
-    //Jämför emailtmp med det man har skrivit i formen. Om bertil@gmail.com är en email ska if-satsen kolla om @gmail.com är efter bertil
-    if (email.includes(mail[i], (emailtmp.length))) {
-      emailStatus = true;
-      break; //Har break här för att for-loopen inte ska iterera flera gånger än vad som behövs.
-    }
+  if ((password == "" || password.length < 6 || passwordConfirm == "") && password != passwordConfirm){
+    alert("Password invalid.")
   }
-  return emailStatus;
-}
-
-//Funktionen kollar om lösenorden stämmer och är längre än 6 karaktärer.
-function VerifyPassword(password, passwordConfirm) {
-  password = document.getElementById("password").value;
-  passwordConfirm = document.getElementById("passwordConfirm").value;
-  return password === passwordConfirm && password.length >= 6;
-}
-
-//En funktion som kollar om username har mer än 6 karaktärer.
-function VerifyUser() {
-  let username = document.getElementById("username").value;
-  return username.length >= 6;
-}
-
-//En funktion som kollar om personuppgifterna stämmer.
-function VerifyAll(emailStatus, passwordStatus, userStatus, checkBoxStatus) {
-  if (emailStatus && passwordStatus && userStatus && checkBoxStatus) {
-    window.open("confirmed.html", "_blank");
-  } else if (!passwordStatus) {
-    alert("Password do not match or requires 6 characters.");
-  } else if (!userStatus) {
-    alert("Username requires atleast 6 characters.")
-  } else if (!checkBoxStatus) {
-    alert("Agreeing to the terms is required.")
-  } else if (!emailStatus) {
-    alert("E-mail required.")
+  else if(email == "" || (!email.includes("@", email.length) && !email.includes("."))){
+    alert("Email invalid.")
+  }
+  else if (user == ""){
+    alert("Username invalid");
+  }
+  else if (!checkBox){
+    alert("Check the box");
+  }
+  else{
+    document.getElementById("form").action = "confirmed.html";
   }
 }
